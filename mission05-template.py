@@ -1,9 +1,3 @@
-# CS1010S --- Programming Methodology
-# Mission 5
-
-# Note that written answers are stored in """multi-line strings"""
-# to allow us to run your code easily when grading your problem set.
-
 import csv
 
 def read_csv(csvfilename):
@@ -13,11 +7,6 @@ def read_csv(csvfilename):
         for row in file_reader:
             rows += (tuple(row), )
     return rows
-
-
-##########
-# Task 1 #
-##########
 
 def replicate(dna_strand):
     dna_base_pairings = {
@@ -31,10 +20,6 @@ def replicate(dna_strand):
     for base in dna_strand:
         c_strand += dna_base_pairings[base]
     return c_strand
-
-##########
-# Task 2 #
-##########
 
 def transcribe(dna_strand):
     dna_strand = dna_strand[: : -1]
@@ -64,23 +49,15 @@ def reverse_transcribe(rna_strand):
             reversed_t_strand += "G"
     return reversed_t_strand
 
-
-# UNCOMMENT THE CODE BELOW AFTER YOU ARE DONE WITH TASK 2. THIS IS NOT OPTIONAL TESTING #
 with open("dna.txt") as f:
     dna = f.read()
 rna = transcribe(dna)
 
-# print("## Q2 ##")
 # print(rna[0:10:1]) # 'AAUAGUUUCU'
 # print(transcribe("AAATGC")) # 'GCAUUU'
 # print(transcribe("ATTGGGCCCC")) # 'GGGGCCCAAU'
 # print(reverse_transcribe(transcribe("AAATGC"))) # 'AAATGC'
 # print(reverse_transcribe("GGGGCCCAAU")) # 'ATTGGGCCCC'
-
-
-##########
-# Task 3 #
-##########
 
 def get_mapping(csv_filename):
     data = read_csv(csv_filename)[1:]
@@ -89,22 +66,14 @@ def get_mapping(csv_filename):
         dictionary[row[0]] = row[3]
     return dictionary
 
-
-# UNCOMMENT THE CODE BELOW AFTER YOU ARE DONE WITH TASK 3. THIS IS NOT OPTIONAL TESTING #
 codon2amino = get_mapping("codon_mapping.csv")
 
-# print("## Q3 ##")
 # print(codon2amino["ACA"]) # 'T'
 # print(codon2amino["AUU"]) # 'I'
 # print(codon2amino["CUC"]) # 'L'
 # print(codon2amino["ACU"]) # 'T'
 # print(codon2amino["UAG"]) # '_'
 # print(codon2amino["UGA"]) # '_'
-
-
-##########
-# Task 4 #
-##########
 
 def translate(rna_strand):
     codon2amino = get_mapping("codon_mapping.csv")
@@ -132,7 +101,6 @@ def translate(rna_strand):
         rna_strand = rna_strand[3:]
     return protein
 
-# print("## Q4 ##")
 # print(translate("AUGUAA"))           # 'M_'
 # print(translate("AGAGAUGCCCUGAGGG")) # 'MP_'
 # protein = translate(rna)
